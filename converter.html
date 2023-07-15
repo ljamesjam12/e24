@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap with  JavaScript 1</title>
+    <link rel="stylesheet" href="asset/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function renderDiv() {
+            for(i = 1;i < 4; i++) {
+                cardClass="card mb-2 ";
+                switch(i) {
+                    case 1 :
+                        cardClass+="bg-primary";
+                        unitLabel = "Grams";
+                        unitAbrev = "gm";
+                        break;
+                        case 2 :
+                        cardClass+="bg-success";
+                        unitLabel = "Kilograms";
+                        unitAbrev = "kg";
+                        break;
+                        case 3:
+                        cardClass+="bg-danger";
+                        unitLabel = "Ounces";
+                        unitAbrev = "oz";
+                        break;
+                        default:
+                            cardClass="";    
+                    }
+                
+            document.write(`
+                <div id="card_${i}" class="${cardClass}">
+                            <div class="card-body">
+                                <h4>${unitLabel}</h4>
+                                <div id="${unitAbrev}Output"></div>
+                            </div>
+                    </div>
+            `); 
+        }
+        document.getElementById("result").style.visibility="hidden"
+        document.getElementById("lbsInput").addEventListener(
+            "input",
+            function(e) {
+                let lbs = e.target.value;
+                document.getElementById("result").style.visibility="visible";
+                document.getElementById("gmOutput").innerHTML= lbs /0.00220462;
+                document.getElementById("kgOutput").innerHTML= lbs /2.20462;
+                document.getElementById("ozOutput").innerHTML= lbs*16;
+            }
+        
+        );
+                
+    }
+    </script>
+</head>
+<body onload="addlinks()">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 id="head1" class="display-4 text-center">Weight Computing</h1>
+                <form>
+                    <div class="form-group mb-2">
+                        <input type="number" name="lbsInput" id="lbsInput" placeholder="Enter your weight in lbs..." class="form-control form-control-lg">
+                    </div>
+                </form>
+                <div id="result">
+                    <!-- <button type="button" class="btn btn-info" onclick="renderDiv()">Show Result</button> -->
+                    <script>
+                        renderDiv();
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
